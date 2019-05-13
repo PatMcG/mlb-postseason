@@ -1,48 +1,55 @@
 import _ from 'lodash';
 
-const GAME_DAY_BASE_URL = 'www.mlb.com/gameday/';
-const PITCHER_BASE_URL = 'm.mlb.com/player/';
+import {PITCHER_BASE_URL, CLUB_BASE_URL, GAME_DAY_BASE_URL} from '../constants';
 
-export function gameItemParser(game) {
-    
-    const gameNumber = _.get(game.game, 'seriesGameNumber');
+// Parse out all data needed to render a game item
+export function gameItemParser(data) {
+    const game = _.get(data, 'game');
+    const gameNumber = _.get(game, 'seriesGameNumber');
+    const gamePk = _.get(game, 'gamePk'); // game id used for URL
 
-    const decisions = _.get(game.game, 'decisions');
-    // const pitchingResult = getPitchingResult(decisions);
-    const gameResult = getGameResult(game.game);
-    const teams = getTeams(game.game);
+    const decisions = _.get(game, 'decisions');
+    const pitchingResult = getPitchingResult(decisions);
+    const gameResult = getGameResult(game);
+    const teams = getTeams(game);
 
-    return {gameNumber, gameResult, teams};
+    return {gameNumber, gameResult, teams, pitchingResult, gamePk};
 }
 
+// Parse info needed to render the Teams component
 const getTeams = (game) => {
     const teams = _.get(game, 'teams');
-    const away = _.get(teams, 'away.team');
-    const home = _.get(teams, 'home.team');
+    const away = _.get(teams, 'away');
+    const home = _.get(teams, 'home');
 
-    const awayTeam = {
-        teamName: _.get(away, 'teamName'),
-        score: _.get(away, 'score'),
-        clubURL: 'foo'
-    }
-    
-    const homeTeam = {
-        teamName: _.get(home, 'teamName'),
-        score: _.get(home, 'score'),
-        clubURL: 'foo'
-    }
 
-    return {awayTeam, homeTeam};
+    return {
+        awayTeam: getTeam(away), 
+        homeTeam: getTeam(home)
+    };
 }
 
-// This will build the URL needed for the pitcher's profile url
-const getPitcherURL = (pitcher) => {
-    const nameSlug = _.get(pitcher, 'nameSlug'); // i.e. david-cone-41352
-    const index = nameSlug.lastIndexOf('-');
-    const pitcherId = nameSlug.substr(index + 1); // grab id for URL
-    const pitcherName = nameSlug.substr(0, index); // grab hyphen name
+const getTeam = (teamData) => {
+    const teamName = _.get(teamData, ['team', 'teamName']);
+    const clubName = _.lowerCase(teamName.replace(/\s/g, ''));
 
-    return `${PITCHER_BASE_URL}${pitcherId}/${pitcherName}`;
+    const team = {
+        teamName,
+        id: _.get(teamData, ['team', 'id']),
+        score: _.get(teamData, 'score'),
+        clubUrl: CLUB_BASE_URL + clubName,
+    }
+
+    return team;
+}
+
+const createPitcher = (pitcher, label) => {
+    const nameSlug = _.get(pitcher, 'nameSlug'); // i.e. david-cone-41352
+    return {
+        name: _.get(pitcher, 'initLastName'),
+        url: PITCHER_BASE_URL + nameSlug,
+        label,
+    }
 }
 
 const getPitchingResult = (decisions) => {
@@ -50,19 +57,15 @@ const getPitchingResult = (decisions) => {
     const losingPitcher = _.get(decisions, 'loser');
     const savePitcher = _.get(decisions, 'save');
 
+    const save = savePitcher ? createPitcher(savePitcher, 'SV: ') : undefined;
+
     const pitchingResult = {
-        winner: {
-            name: _.get(winningPitcher, 'initLastName'),
-            url: getPitcherURL(winningPitcher)
-        },
-        loser: {
-            name: _.get(losingPitcher, 'initLastName'),
-            url: getPitcherURL(losingPitcher)
-        },
-        save: {
-            name: _.get(savePitcher, 'initLastName'),
-            url: getPitcherURL(savePitcher)
-        }
+        winner: createPitcher(winningPitcher, 'W: '),
+        loser: createPitcher(losingPitcher, 'L: '),
+    }
+
+    if(save) {
+        pitchingResult.save = save;
     }
 
     return pitchingResult;
@@ -70,8 +73,8 @@ const getPitchingResult = (decisions) => {
 
 const getGameResult = (game) => {
     const status = _.get(game, 'status')
-    const detailedState = _.get(status, 'detailedState'); // i.e. F
-    const codedGameState = _.get(status, 'codedGameState'); // i.e. Final
+    const detailedState = _.upperCase(_.get(status, 'detailedState')); // i.e. Final
+    const codedGameState = _.get(status, 'codedGameState'); // i.e. F
 
     // if extra innings, needed for abbreviated result i.e. F/18
     const linescore = _.get(game, 'linescore');

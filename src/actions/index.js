@@ -1,8 +1,8 @@
-import {FETCH_SCHEDULE} from './types';
 import axios from 'axios';
 import _ from 'lodash';
 
-const API_URL = 'http://statsapi.mlb.com/api/v1/schedule/postseason/series';
+import {FETCH_SCHEDULE} from './types';
+import {API_URL} from '../constants';
 
 const fetchScheduleSuccess = (data) => {
     return {

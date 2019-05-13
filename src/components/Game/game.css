@@ -1,0 +1,99 @@
+.game-item {
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 70px;
+    justify-content: flex-start;
+    border-top: 1px solid #ECECEC;
+    border-bottom: 1px solid #ECECEC;
+    padding-right: 25px;
+    margin: 0 4px 0 8px;
+    overflow: hidden;
+  }
+  
+.game-group {
+    display: flex;
+    flex-direction: row;
+    margin-right: 6px;
+    height: 70px;
+    width: auto;
+    box-sizing: border-box;
+    padding: 8px 0;
+    align-items: center;
+}
+
+.broadcast-image {
+    width: 50px;
+  }
+  
+.team-logo {
+    margin: 8px;
+    height: 20px;
+    vertical-align: middle;
+  }
+
+.game-number {
+    margin-bottom: 3px;
+  }
+  
+.game-info {
+    flex: 0 0 8%;
+    font-size: 11px;
+    color: #666666;
+  }
+  
+.media-group {
+    align-items: flex-end;
+  }
+  
+.media-group .wrap{
+    margin-right: 20px;
+    font-size: 11px;
+    color: #666666;
+}
+
+.media-group .video {
+    font-size: 11px;
+    color: #666666;
+}
+  
+.game-result {
+    font-weight: bold;
+    color: black;
+    margin-right: 45px;
+  }
+  
+.at-team {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  
+.teams-item {
+    flex: 0 0 30%;
+    font-weight: bold;
+  }
+  
+.away-team, .home-team {
+    color: black;
+  }
+  
+.status-broadcast-group {
+    flex: 0 0 15%;
+  }
+
+.pitcher-name {
+  color: #147cd1;
+  text-decoration: none;
+}
+
+.pitchers-item {
+    flex: 0 0 35%;
+  }
+  
+.pitcher {
+    margin-left: 8px;
+  }
+  

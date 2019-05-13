@@ -12,11 +12,11 @@ class Teams extends Component {
 
     return (
       <div key="teams" className="teams-item game-group">
-      <img className="team-logo" alt="Milwaukee Brewers" src={this.logoUrl(homeTeam.id)}/>
+      <img className="team-logo" alt={awayTeam.teamName} src={this.logoUrl(homeTeam.id)}/>
             <a href={awayTeam.clubUrl} className="away-team">{awayTeam.teamName} {awayTeam.score}</a>
             <span className="at-team">@</span>
+            <img className="team-logo" alt={homeTeam.teamName} src={this.logoUrl(awayTeam.id)}/>
             <a href={homeTeam.clubUrl} className="home-team">{homeTeam.teamName} {homeTeam.score}</a>
-        <img className="team-logo" alt="Milwaukee Brewers" src={this.logoUrl(awayTeam.id)}/>
       </div>
     );
   }

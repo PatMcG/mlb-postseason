@@ -1,7 +1,7 @@
 .schedule-container {
   display: flex;
   font-family: Gill Sans, Verdana;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 14px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -16,66 +16,6 @@
   margin-top: 2em;
 }
 
-.broadcast-image {
-  width: 50px;
-}
-.series-header {
-  color: #333333;
-  text-align: center;
-  margin: 32px 0 16px;
-}
-
-.series-header-info {
-    width: 40%;
-    overflow: hidden;
-    margin: 0 auto;
-    line-height: 1.2;
-}
-
-.series-list {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-
-.team-header-logo.left {
-  float:left;
-  margin-top: 8px;
-}
-
-.team-header-logo.right {
-  float:right;
-  margin-top: -58px;
-}
-
-.team-logo {
-  margin: 8px;
-  height: 20px;
-  vertical-align: middle;
-}
-
-.team-header-logo {
-  width: 40px;
-  display: block;
-  text-align: center;
-  height: 28px;
-}
-
-.series-title {
-  font-size: 25px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  width: 90%;
-}
-
-.series-result {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-}
-
 img {
   max-width: 100%;
 }
@@ -84,82 +24,3 @@ a {
   background-color: transparent;
   text-decoration: none;
 }
-
-.series-list-container {
-  width: 100%;
-}
-
-.game-number {
-  flex: 0 0 10%;
-}
-
-.media-group {
-  align-items: flex-end;
-}
-
-.wrap {
-  margin-right: 10px;
-}
-
-.game-result {
-  font-weight: bold;
-  color: black;
-  margin-right: 35px;
-}
-
-.at-team {
-  margin-left: 4px;
-  margin-right: 4px;
-}
-
-.teams-item {
-  flex: 0 0 30%;
-  font-weight: bold;
-}
-
-.away-team, .home-team {
-  color: black;
-}
-
-.status-broadcast-group {
-  flex: 0 0 15%;
-}
-.pitcher-name {
-  color: #147cd1;
-  text-decoration: none;
-}
-.pitchers-item {
-  flex: 0 0 35%;
-}
-
-.pitcher {
-  margin-left: 8px;
-}
-
-.game-item {
-  display: flex;
-  box-sizing: border-box;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  height: 70px;
-  justify-content: flex-start;
-  border-top: 1px solid #ECECEC;
-  border-bottom: 1px solid #ECECEC;
-  padding-right: 25px;
-  margin: 0 4px 0 8px;
-  overflow: hidden;
-}
-
-.game-group {
-  display: flex;
-  flex-direction: row;
-  margin-right: 6px;
-  height: 70px;
-  width: auto;
-  box-sizing: border-box;
-  padding: 8px 0;
-  align-items: center;
-}
-

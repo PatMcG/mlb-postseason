@@ -3,6 +3,7 @@ import _ from 'lodash';
 import GameItem from './GameItem';
 
 import { gameItemParser, Wrapper } from '../../parsers';
+import './game.css';
 
 /* Responsible for rendering the list of GameItems */
 class GameList extends Component {
@@ -12,7 +13,7 @@ class GameList extends Component {
         this.GameItem = Wrapper(GameItem, gameItemParser);
     }
 
-    renderGame() {
+    renderGames() {
         const { games } = this.props;
         const {GameItem} = this;
 
@@ -33,7 +34,7 @@ class GameList extends Component {
         return (
             <div className="game-list-container">
                 <div className="row">
-                    {this.renderGame()}
+                    {this.renderGames()}
                 </div>
             </div>
         );

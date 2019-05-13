@@ -1,19 +1,28 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 import {PITCHER_BASE_URL, CLUB_BASE_URL, GAME_DAY_BASE_URL} from '../constants';
 
 // Parse out all data needed to render a game item
 export function gameItemParser(data) {
-    const game = _.get(data, 'game');
+    const game = _.get(data, 'game'); // base game object
     const gameNumber = _.get(game, 'seriesGameNumber');
     const gamePk = _.get(game, 'gamePk'); // game id used for URL
 
+    const gameDate = _.get(game, 'gameDate');
     const decisions = _.get(game, 'decisions');
     const pitchingResult = getPitchingResult(decisions);
     const gameResult = getGameResult(game);
     const teams = getTeams(game);
 
-    return {gameNumber, gameResult, teams, pitchingResult, gamePk};
+    return {
+        gameNumber, 
+        gameResult, 
+        gamePk,
+        gameDate: formatDate(gameDate),
+        pitchingResult, 
+        teams, 
+    };
 }
 
 // Parse info needed to render the Teams component
@@ -52,6 +61,7 @@ const createPitcher = (pitcher, label) => {
     }
 }
 
+// data needed for pitchers component
 const getPitchingResult = (decisions) => {
     const winningPitcher = _.get(decisions, 'winner');
     const losingPitcher = _.get(decisions, 'loser');
@@ -71,12 +81,19 @@ const getPitchingResult = (decisions) => {
     return pitchingResult;
 }
 
+// Format the raw date to short format e.g. Aug 3
+const formatDate = (date) => {
+    const formattedDate = moment(date).format('MMM D');
+    
+    return formattedDate;
+}
+
 const getGameResult = (game) => {
     const status = _.get(game, 'status')
-    const detailedState = _.upperCase(_.get(status, 'detailedState')); // i.e. Final
-    const codedGameState = _.get(status, 'codedGameState'); // i.e. F
+    const detailedState = _.upperCase(_.get(status, 'detailedState')); // e.g. Final
+    const codedGameState = _.get(status, 'codedGameState'); // e.g. F
 
-    // if extra innings, needed for abbreviated result i.e. F/18
+    // if extra innings, needed for abbreviated result e.g. F/18
     const linescore = _.get(game, 'linescore');
     const scheduledInnings = _.get(linescore, 'scheduledInnings');
     const currentInning = _.get(linescore, 'currentInning');

@@ -1,0 +1,54 @@
+.series-header {
+    color: #333333;
+    text-align: center;
+    margin: 32px 0 32px;
+  }
+  
+.series-header-info {
+      width: 40%;
+      overflow: hidden;
+      margin: 0 auto;
+      line-height: 1.2;
+}
+
+.series-list {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+.team-header-logo {
+    width: 40px;
+    display: block;
+    text-align: center;
+    height: 28px;
+  }
+  
+  
+.team-header-logo.left {
+    float:left;
+    margin-top: 8px;
+  }
+  
+.team-header-logo.right {
+    float:right;
+    margin-top: -58px;
+  }
+
+.series-title {
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 90%;
+  }
+  
+.series-result {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+.series-list-container {
+    width: 100%;
+}

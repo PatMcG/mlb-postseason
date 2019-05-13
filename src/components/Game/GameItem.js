@@ -7,11 +7,14 @@ import {ESPN_LOGO} from '../../constants';
 class GameItem extends Component {
   
   render() {
-    const {gameNumber, gameResult, teams, pitchingResult, gamePk} = this.props;
+    const {gameNumber, gameDate, gamePk, gameResult, pitchingResult, teams} = this.props;
 
     return (
       <div key="game" className="game-item">
-        <div className="game-number">{`Gm ${gameNumber}`}</div>
+        <div className="game-info">
+          <div className="game-number">{`Gm ${gameNumber}`}</div>
+          <div className="game-date">{gameDate}</div>
+        </div>
 
         <Teams teams={teams}/>
 
@@ -23,8 +26,8 @@ class GameItem extends Component {
         <Pitchers pitchers={pitchingResult}/>
 
         <div className="media-group">
-            <div href={`www.mlb.com/gameday/${gamePk}/final/wrap`} className="wrap">Wrap</div>
-            <div href={`www.mlb.com/gameday/${gamePk}/final/video`} className="video">Video</div>
+            <a href={`www.mlb.com/gameday/${gamePk}/final/wrap`} className="wrap">Wrap</a>
+            <a href={`www.mlb.com/gameday/${gamePk}/final/video`} className="video">Video</a>
         </div>
       </div>
     );

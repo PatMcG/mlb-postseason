@@ -4,6 +4,7 @@ import _ from 'lodash';
 import SeriesItem from './SeriesItem';
 import { seriesItemParser, Wrapper } from '../../parsers';
 import {POST_SEASON_LOGO} from '../../constants';
+import './series.css';
 
 /* Handles rendering the SeriesItems*/
 class SeriesList extends Component {
@@ -31,6 +32,8 @@ class SeriesList extends Component {
         );
     }
 
+    //TODO: Add Button to set state and filter by Round/Day
+    //TODO: Can create game objects by date and pass to GameList
     render() {
         return (
             <div className="series-list-container">

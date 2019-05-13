@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import SeriesItem from './SeriesItem';
-import { seriesItemParser, Wrapper } from '../parsers';
+import { seriesItemParser, Wrapper } from '../../parsers';
+import {POST_SEASON_LOGO} from '../../constants';
 
 /* Handles rendering the SeriesItems*/
 class SeriesList extends Component {
@@ -33,7 +34,7 @@ class SeriesList extends Component {
     render() {
         return (
             <div className="series-list-container">
-            <img className="schedule-logo" src="//www.mlbstatic.com/mlb.com/sections/postseason/builds/a5c9af3e04ddfb3d614e5a3a2a71fe091bbd72e7_1540491044/images/postseason_logo.svg"></img>
+            <img className="schedule-logo" src={POST_SEASON_LOGO}></img>
                 <div className="series-row">
                     {this.renderSeries()}
                 </div>

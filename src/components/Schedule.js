@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchSchedule } from '../actions'
-import SeriesList from './SeriesList';
+import SeriesList from './Series/SeriesList';
+import './styles.css';
 
+/* Top Level component, handles fetching and passes data to the SeriesList */
 class Schedule extends Component {
     componentWillMount() {
         this.props.fetchSchedule();
@@ -11,8 +13,8 @@ class Schedule extends Component {
 
     render() {
         return (
-            <div className="series-list">
-                <SeriesList series={this.props.series} />;
+            <div className="schedule-container">
+                <SeriesList series={this.props.series} />
             </div>
         );
     }

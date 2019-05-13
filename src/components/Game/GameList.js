@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import GameItem from './GameItem';
 
-import { gameItemParser, Wrapper } from '../parsers';
+import { gameItemParser, Wrapper } from '../../parsers';
 
 /* Responsible for rendering the list of GameItems */
 class GameList extends Component {

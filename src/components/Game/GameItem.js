@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Teams from './Teams';
 import Pitchers from './Pitchers';
+import {ESPN_LOGO} from '../../constants';
 
 /* Renders a single row inside the series, containing Teams, Pitchers etc. */
 class GameItem extends Component {
@@ -16,7 +17,7 @@ class GameItem extends Component {
 
         <div className="status-broadcast-group">
             <a href={gameResult.url} className="game-result">{gameResult.label}</a>
-            <img className="broadcast-image" src="https://prod-gameday.mlbstatic.com/responsive-gameday-assets/1.2.0/images/tv_station/2018/142.svg"></img>
+            <img className="broadcast-image" src={ESPN_LOGO}></img>
         </div>
 
         <Pitchers pitchers={pitchingResult}/>

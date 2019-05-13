@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import GameList from './GameList';
+import GameList from '../Game/GameList';
 import SeriesHeader from './SeriesHeader';
 
 /* Renders a Series Header and all games associated with series */
